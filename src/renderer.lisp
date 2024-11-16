@@ -2,6 +2,7 @@
   (:use #:cl
         #:hsx
         #:trivia)
+  (:import-from #:str)
   (:local-nicknames (#:jg #:jingle))
   (:import-from #:hsx/element
                 #:element)
@@ -10,6 +11,25 @@
 
 (defun bust-cache (url)
   (format nil "~a?~a" url #.(get-universal-time)))
+
+(defcomp page-header ()
+  (let ((links '(("Work" "/work")
+                 ("Blog" "/blog"))))
+    (hsx
+     (header :class "flex justify-between container mx-auto py-4"
+       (h1 :class "text-lg font-bold"
+         (a :href "/" "skyizwhite"))
+       (ul :class "flex"
+         (loop
+           :for (content href) :in links :collect
+              (li
+                (a
+                  :href href
+                  :class (concatenate 'string
+                                      "pl-4"
+                                      (and (str:starts-with? href (jg:request-uri jg:*request*))
+                                           " text-pink-600"))
+                  content))))))))
 
 (defcomp document (&key title description children)
   (hsx
@@ -24,12 +44,18 @@
        (script :src "https://cdn.jsdelivr.net/npm/htmx-ext-head-support@2.0.0/head-support.min.js")
        (script :src "https://cdn.jsdelivr.net/npm/htmx-ext-response-targets@2.0.0/response-targets.min.js")
        (script :src "https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js" :defer t)
-       (title (format nil "~@[~a - ~]skyizwhite.dev" title))
+       (title (format nil "~@[~a - ~]skyizwhite" title))
        (meta
          :name "description"
          :content (or description "pakuの個人サイト")))
-     (body :hx-ext "head-support, response-targets" :hx-target-404 "body"
-       (main :class "container mx-auto"
+     (body
+       :hx-ext "head-support, response-targets"
+       :hx-boost "true"
+       :hx-target-404 "body"
+       :hx-target-5* "body"
+       :class "h-[100svh] flex flex-col"
+       (page-header)
+       (main :class "flex-1 h-full mx-auto container"
          children)))))
 
 (defmethod jg:process-response ((app jg:app) result)
