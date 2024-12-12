@@ -17,7 +17,7 @@
 ("hsx" .
  (:class qlot/source/git:source-git
   :initargs (:remote-url "https://github.com/skyizwhite/hsx.git")
-  :version "git-7ce7751900ce6eacb9264b3109402bcc17aa40b2"))
+  :version "git-33dd8e82051305840dc3f5bfc480a5f3dd1ec951"))
 ("ningle-fbr" .
  (:class qlot/source/git:source-git
   :initargs (:remote-url "https://github.com/skyizwhite/ningle-fbr.git")

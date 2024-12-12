@@ -15,8 +15,9 @@
        (main
          (h1 "500 Internal Server Error")
          (when (env:dev-mode-p)
-           (pre
-             (code (tb:print-backtrace condition :output nil)))))))))
+           (hsx
+            (pre
+              (code (tb:print-backtrace condition :output nil))))))))))
 
 (defparameter *recoverer*
   (lambda (app)

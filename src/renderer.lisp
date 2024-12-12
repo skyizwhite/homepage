@@ -34,10 +34,11 @@
          :name "description"
          :content
          (or description
-             (<>
-               "Welcome to the official website of 'Amongtellers (Amaterasu)', "
-               "a personal project by paku (skyizwhite). "
-               "Discover project details, the latest updates, and related activities."))))
+             (hsx
+              (<>
+                "Welcome to the official website of 'Amongtellers (Amaterasu)', "
+                "a personal project by paku (skyizwhite). "
+                "Discover project details, the latest updates, and related activities.")))))
      (body
        :hx-ext "head-support, response-targets"
        :hx-boost "true" :hx-target-404 "body" :hx-target-5* "body"
