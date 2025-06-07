@@ -50,7 +50,7 @@
              :class "h-1 w-8 rounded-full bg-black transition duration-400"
              :data-class "{'-rotate-45 -translate-y-2.5': $open}")))
        (nav
-         :|data-show.duration_300ms| "$open"
+         :data-show.duration_300ms "$open"
          :class (clsx "fixed flex flex-col items-center justify-center"
                       "z-10 top-0 right-0 w-full h-full gap-16 bg-gray-200"
                       "transition duration-300 opacity-0")

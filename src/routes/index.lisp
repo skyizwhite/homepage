@@ -36,9 +36,7 @@
        :alt "avatar" :class "size-40 rounded-xl shadow-sm")
      (div :class "flex flex-col items-center gap-2 py-6"
        (h1 :class "font-bold text-2xl text-center"
-         "Akira Tempaku")
-       (p :class "text-xl"
-         "Web developer"))
+         "Akira Tempaku"))
      (div :class "flex flex-col gap-2 items-left"
        (loop
          :for (name url icon) :in *links*
